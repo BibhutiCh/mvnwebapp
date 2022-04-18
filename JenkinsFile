@@ -8,8 +8,9 @@ pipeline {
             }
         }
         stage('SonarQube analysis') {
+            def scannerHome = tool 'SonarScanner 9.3';
             steps{
-                withSonarQubeEnv('SonarQube') {
+                withSonarQubeEnv('SonarQube'){
                 bat "mvn sonar:sonar"
                 }
             }
