@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone sources') {
+            steps {
+               git 'https://github.com/BibhutiCh/mvnwebapp.git'
+            }
+        }
+        stage('Build') {
+            steps {
+               bat 'mvn clean package'
+            }
+        }
+
+        stage('SonarQube analysis') {
+            steps{
+                withSonarQubeEnv('SonarQube') {
+                bat "mvn sonar:sonar"
+                }
+            }
+        }
+    }
+}
