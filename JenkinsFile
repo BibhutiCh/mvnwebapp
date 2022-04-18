@@ -8,10 +8,9 @@ pipeline {
             }
         }
         stage('SonarQube analysis') {
-            def scannerHome = tool 'SonarScanner 4.7.0.2747';
             steps{
-                withSonarQubeEnv('SonarQube'){
-                bat "mvn sonar:sonar"
+                withSonarQubeEnv(credentialsId: '0e6e509f9d8074d2b0335eac2b5ab5971837f8d0', installationName: 'SonarQube'){
+                sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:4.7.0.2747:sonar'
                 }
             }
         }
