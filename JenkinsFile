@@ -16,7 +16,7 @@ pipeline {
         stage('SonarQube analysis') {
             steps{
                 withSonarQubeEnv(credentialsId:'Sonaeqube-Token', installationName:'SonarQubeServer'){
-                bat 'mvn org.sonarsource.scanner.maven:SonarQubeScanner-9.3:sonar'
+                bat 'mvn sonar:sonar'
                 }
             }
         }
